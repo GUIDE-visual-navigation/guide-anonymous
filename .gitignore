@@ -1,0 +1,5 @@
+.DS_Store
+**/.DS_Store
+*.pdf
+*.mp4
+static/images/*.png

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>GUIDE</title>
+
+  <style>
+    /* 1. 彻底去除所有链接悬停时的红色下划线和颜色变化 */
+    a:hover {
+      text-decoration: none !important;
+      color: inherit !important;
+      border: none !important;
+    }
+    .publication-authors a:hover {
+      opacity: 0.8; /* 仅保留轻微透明度变化作为点击反馈 */
+    }
+
+    /* 2. 压缩标题区与视频区的间距 */
+    .hero.top-header {
+      padding-bottom: 0 !important;
+    }
+    .hero-body {
+      padding-bottom: 1.5rem !important;
+    }
+    #overview-section {
+      padding-top: 0 !important;
+      margin-top: -1rem !important;
+    }
+  </style>
+
+  <meta name="title" content="GUIDE: Goal-Initialized Directional Understanding for End-to-End Visual Navigation">
+  <meta name="description" content="GUIDE: A fully end-to-end reinforcement learning framework for goal-initialized visual navigation with internal egomotion and directional awareness.">
+  <meta name="keywords" content="GUIDE, egomotion and directional awareness, reinforcement learning, visual navigation, quadruped robot">
+  <meta name="author" content="Anonymous Authors">
+  
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+</head>
+<body>
+
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+    <section class="hero top-header">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">GUIDE: Goal-Initialized Directional Understanding for End-to-End Visual Navigation</h1>
+              
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  Anonymous Authors</span>
+              </div>
+        
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Anonymous Institution</span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="overview-section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Overview</h2>
+            <div class="content has-text-justified is-size-6" style="font-size: 0.95rem; line-height: 1.6;">
+              <p>
+                GUIDE studies goal-initialized end-to-end visual navigation, where the target is provided only once at the beginning of an episode. The policy must navigate using onboard proprioception and depth perception without streaming goal updates, prior maps, or an external localization pipeline.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Experimental Results</h2>
+        <div class="content has-text-justified is-size-6" style="font-size: 0.95rem; line-height: 1.6;">
+          <p>
+            Anonymous supplementary videos and result visualizations can be added here after checking that no author names, institution names, account handles, logos, or identifying metadata are present.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified is-size-6" style="font-size: 0.95rem; line-height: 1.6;">
+              <p>
+               Learning-based visual navigation for legged robots typically relies on continuous goal updates from hierarchical state estimation to provide a persistent directional reference. This reliance incurs additional sensory and computational overhead and deviates from fully end-to-end mobile autonomy. Furthermore, under partial observability, policies are prone to learn myopic behaviors, easily becoming trapped in dead ends and complex structural layouts. To address these limitations, we investigate a goal-initialized navigation setting, where the target is provided only once at the beginning of an episode, requiring the robot to operate based on intrinsic spatial memory without subsequent goal updates from external modules. In this work, we propose GUIDE, a fully end-to-end reinforcement learning framework designed to cultivate internal directional awareness. Specifically, GUIDE incorporates a spatial anchor predictor that leverages multi-frequency proprioceptive history to extract egomotion representations, thereby maintaining a persistent long-horizon spatial context for navigation. Concurrently, it utilizes raw depth streams to perceive local environmental geometry. We evaluate the proposed framework across both simulation and real-world scenarios on a quadruped robot. Experiments show that GUIDE learns reliable egomotion and directional awareness, enabling a fully end-to-end deployed policy to safely navigate through dense clutter and structured mazes without subsequent goal guidance or prior maps.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Pipeline</h2>
+            <div class="content">
+              <p class="has-text-justified is-size-6" style="margin-top: 1.5rem; line-height: 1.6; font-weight: 300;">
+                <b>Overview of the GUIDE framework.</b> Multi-frequency proprioceptive history is processed into proprioceptive tokens, which are supervised to predict spatial anchor vectors to cultivate egomotion and directional awareness. Concurrently, depth buffers are encoded and fused with these tokens via cross-attention to yield spatial latents. Finally, the actor aggregates these representations with the latest proprioceptive state to produce twist commands. All modules are jointly optimized end-to-end from scratch.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre id="bibtex-code" style="background: #f5f5f5; padding: 1.2rem; border-radius: 8px;"><code>@article{anonymous2026guide,
+  title={GUIDE: Goal-Initialized Directional Understanding for End-to-End Visual Navigation}, 
+  author={Anonymous Authors},
+  year={2026},
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  </script>
+</body>
+</html>
