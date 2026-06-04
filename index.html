@@ -7,26 +7,82 @@
   <title>GUIDE</title>
 
   <style>
-    /* 1. 彻底去除所有链接悬停时的红色下划线和颜色变化 */
     a:hover {
       text-decoration: none !important;
       color: inherit !important;
       border: none !important;
     }
     .publication-authors a:hover {
-      opacity: 0.8; /* 仅保留轻微透明度变化作为点击反馈 */
+      opacity: 0.8;
     }
 
-    /* 2. 压缩标题区与视频区的间距 */
     .hero.top-header {
       padding-bottom: 0 !important;
     }
     .hero-body {
       padding-bottom: 1.5rem !important;
     }
-    #overview-section {
-      padding-top: 0 !important;
-      margin-top: -1rem !important;
+
+    .video-section {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .video-section:nth-of-type(even) {
+      background: #f7f8fa;
+    }
+
+    .video-grid {
+      display: grid;
+      gap: 1.35rem;
+      margin-top: 1.25rem;
+    }
+
+    .video-grid.two-column {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .video-grid.single-column {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .video-item {
+      margin: 0;
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #111827;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #d7dce3;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      background: #111827;
+    }
+
+    .video-caption {
+      min-height: 1.5rem;
+      margin-top: 0.5rem;
+      color: #4b5563;
+      font-size: 0.92rem;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 768px) {
+      .video-grid.two-column {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   </style>
 
@@ -77,70 +133,131 @@
       </div>
     </section>
 
-    <section class="section" id="overview-section">
+    <section class="section video-section">
       <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Overview</h2>
-            <div class="content has-text-justified is-size-6" style="font-size: 0.95rem; line-height: 1.6;">
-              <p>
-                GUIDE studies goal-initialized end-to-end visual navigation, where the target is provided only once at the beginning of an episode. The policy must navigate using onboard proprioception and depth perception without streaming goal updates, prior maps, or an external localization pipeline.
-              </p>
+        <h2 class="title is-3 has-text-centered">In-lab Evaluations</h2>
+        <div class="video-grid two-column">
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/in_lab_01.mp4" type="video/mp4">
+              </video>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Experimental Results</h2>
-        <div class="content has-text-justified is-size-6" style="font-size: 0.95rem; line-height: 1.6;">
-          <p>
-            Anonymous supplementary videos and result visualizations can be added here after checking that no author names, institution names, account handles, logos, or identifying metadata are present.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section hero is-light">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Abstract</h2>
-            <div class="content has-text-justified is-size-6" style="font-size: 0.95rem; line-height: 1.6;">
-              <p>
-               Learning-based visual navigation for legged robots typically relies on continuous goal updates from hierarchical state estimation to provide a persistent directional reference. This reliance incurs additional sensory and computational overhead and deviates from fully end-to-end mobile autonomy. Furthermore, under partial observability, policies are prone to learn myopic behaviors, easily becoming trapped in dead ends and complex structural layouts. To address these limitations, we investigate a goal-initialized navigation setting, where the target is provided only once at the beginning of an episode, requiring the robot to operate based on intrinsic spatial memory without subsequent goal updates from external modules. In this work, we propose GUIDE, a fully end-to-end reinforcement learning framework designed to cultivate internal directional awareness. Specifically, GUIDE incorporates a spatial anchor predictor that leverages multi-frequency proprioceptive history to extract egomotion representations, thereby maintaining a persistent long-horizon spatial context for navigation. Concurrently, it utilizes raw depth streams to perceive local environmental geometry. We evaluate the proposed framework across both simulation and real-world scenarios on a quadruped robot. Experiments show that GUIDE learns reliable egomotion and directional awareness, enabling a fully end-to-end deployed policy to safely navigate through dense clutter and structured mazes without subsequent goal guidance or prior maps.
-              </p>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/in_lab_02.mp4" type="video/mp4">
+              </video>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Pipeline</h2>
-            <div class="content">
-              <p class="has-text-justified is-size-6" style="margin-top: 1.5rem; line-height: 1.6; font-weight: 300;">
-                <b>Overview of the GUIDE framework.</b> Multi-frequency proprioceptive history is processed into proprioceptive tokens, which are supervised to predict spatial anchor vectors to cultivate egomotion and directional awareness. Concurrently, depth buffers are encoded and fused with these tokens via cross-attention to yield spatial latents. Finally, the actor aggregates these representations with the latest proprioceptive state to produce twist commands. All modules are jointly optimized end-to-end from scratch.
-              </p>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/in_lab_03.mp4" type="video/mp4">
+              </video>
             </div>
-          </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/in_lab_04.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <section class="section" id="BibTeX">
-      <div class="container is-max-desktop content">
-        <h2 class="title">BibTeX</h2>
-        <pre id="bibtex-code" style="background: #f5f5f5; padding: 1.2rem; border-radius: 8px;"><code>@article{anonymous2026guide,
-  title={GUIDE: Goal-Initialized Directional Understanding for End-to-End Visual Navigation}, 
-  author={Anonymous Authors},
-  year={2026},
-}</code></pre>
+    <section class="section video-section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">12m x 12m Maze</h2>
+        <div class="video-grid two-column">
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/maze_demo_01_view_01.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/maze_demo_01_view_02.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/maze_demo_02_view_01.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/maze_demo_02_view_02.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/maze_demo_03_view_01.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/maze_demo_03_view_02.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section video-section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">In-the-wild Deployments</h2>
+        <div class="video-grid single-column">
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/wild_01.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/wild_02.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+          <figure class="video-item">
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata">
+                <source src="static/videos/wild_03.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
   </main>
