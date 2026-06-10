@@ -94,6 +94,19 @@
         grid-template-columns: minmax(0, 1fr);
       }
     }
+
+    .simulation-section .video-grid.two-column {
+      grid-template-columns: repeat(2, minmax(0, 520px));
+      justify-content: center;
+    }
+
+    .simulation-section .video-frame {
+      aspect-ratio: 1 / 1;
+    }
+
+    .simulation-section .video-frame video {
+      object-fit: contain;
+    }
   </style>
 
   <meta name="title" content="GUIDE: Goal-Initialized Directional Understanding for End-to-End Visual Navigation">
@@ -139,6 +152,32 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section video-section simulation-section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Simulation Demos</h2>
+        <div class="video-grid two-column">
+          <figure class="video-item">
+            <h3 class="video-title">Cluttered Environment</h3>
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="static/videos/web/sim_clutter.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
+          <figure class="video-item">
+            <h3 class="video-title">Maze Environment</h3>
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="static/videos/web/sim_maze.mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-caption">&nbsp;</figcaption>
+          </figure>
         </div>
       </div>
     </section>
